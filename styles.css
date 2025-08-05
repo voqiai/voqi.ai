@@ -1,0 +1,491 @@
+/* Global Styles */
+
+/* Color palette based on Voqi AI brand
+ * The site uses deep purples and blues to reflect the
+ * futuristic, AI‑driven nature of the company. Lighter
+ * gradients and translucent panels help separate
+ * content while keeping a dark, modern aesthetic.
+ */
+
+/* CSS Variables for easy theming */
+:root {
+  --color-primary: #4f7dfc; /* accent blue used for buttons and highlights */
+  --color-secondary: #6a4ffb; /* secondary accent used in gradients */
+  --color-bg-top: #0d0221; /* very dark purple for top of gradient */
+  --color-bg-bottom: #301a64; /* deeper purple for bottom of gradient */
+  --color-text: #ffffff; /* primary text color */
+  --color-muted: rgba(255, 255, 255, 0.7); /* muted text */
+  --nav-height: 70px;
+  --border-radius: 12px;
+  --color-disclaimer: rgba(255, 255, 255, 0.5);
+}
+
+/* Reset default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Arial', sans-serif;
+  color: var(--color-text);
+  background: linear-gradient(180deg, var(--color-bg-top), var(--color-bg-bottom));
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+/* Import Google Fonts via CSS if available */
+/* The fonts will load when online; fallback to system fonts when offline. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', 'Manrope', Arial, sans-serif;
+}
+
+/* Navigation bar */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  z-index: 1000;
+}
+
+nav .logo {
+  display: flex;
+  align-items: center;
+}
+
+nav .logo img {
+  height: 40px;
+  width: auto;
+  margin-right: 0.5rem;
+}
+
+nav .logo span {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav ul li a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+  position: relative;
+  padding: 0.25rem 0;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s;
+}
+
+nav ul li a:hover::after,
+nav ul li a:focus::after {
+  width: 100%;
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+  color: var(--color-primary);
+}
+
+/* CTA button inside nav */
+nav .nav-cta {
+  margin-left: 1.5rem;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+nav .nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* Hero section */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: calc(var(--nav-height) + 2rem) 2rem 4rem;
+  position: relative;
+  overflow: hidden;
+  /* Animated gradient background */
+  background: linear-gradient(120deg, var(--color-bg-top), var(--color-secondary), var(--color-bg-bottom));
+  background-size: 400% 400%;
+  animation: gradientAnimation 25s ease infinite;
+}
+
+/* Subtle radial overlay for hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at 30% 30%, var(--color-secondary) 0%, transparent 70%);
+  filter: blur(100px);
+  z-index: -1;
+}
+
+/* Gradient animation keyframes */
+@keyframes gradientAnimation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  line-height: 1.1;
+  margin-bottom: 1.2rem;
+  max-width: 900px;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+.hero p {
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  max-width: 650px;
+  color: var(--color-muted);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Generic button style */
+.btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-text);
+  padding: 0.8rem 2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+}
+
+/* Disclaimer text */
+.disclaimer {
+  font-size: 0.8rem;
+  color: var(--color-disclaimer);
+  line-height: 1.4;
+  text-align: center;
+  margin: 2rem 0 1rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section headings */
+section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+section p.lead {
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--color-muted);
+  margin-bottom: 3rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Features grid */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.feature-box {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s, background 0.3s;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Fade-in animation triggered by JS */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Back to top button */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: none;
+  background: var(--color-primary);
+  color: var(--color-text);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+}
+
+.feature-box h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.feature-box p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Steps list */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.step {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+}
+
+.step .number {
+  background: var(--color-primary);
+  color: #ffffff;
+  height: 40px;
+  width: 40px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.step h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.step p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Pricing cards */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.pricing-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  backdrop-filter: blur(4px);
+  position: relative;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-card p.price {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.pricing-card ul {
+  list-style: none;
+  margin: 1rem 0 2rem;
+  padding: 0;
+}
+
+.pricing-card ul li {
+  margin-bottom: 0.7rem;
+  color: var(--color-muted);
+}
+
+.pricing-card .btn {
+  display: inline-block;
+  background: var(--color-primary);
+  color: var(--color-text);
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.pricing-card .btn:hover {
+  transform: translateY(-3px);
+}
+
+/* About section */
+.about-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--color-muted);
+}
+
+.about-wrapper h3 {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.about-wrapper p {
+  margin-bottom: 1rem;
+}
+
+/* Contact form */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form label {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  border: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-text);
+  font-size: 1rem;
+  resize: vertical;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.contact-form button {
+  background: var(--color-primary);
+  color: var(--color-text);
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.contact-form button:hover {
+  transform: translateY(-3px);
+}
+
+/* Footer */
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  nav ul {
+    gap: 1rem;
+  }
+}
